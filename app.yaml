@@ -1,0 +1,20 @@
+runtime: python27
+api_version: 1
+threadsafe: true
+
+skip_files:
+  - app/node_modules/  # Don't send node_modules to GCloud, since we only need them for local development
+
+handlers:
+- url: /api/.*
+  login: required
+  auth_fail_action: redirect
+  script: rss_api.main.app
+- url: /
+  login: required
+  auth_fail_action: redirect
+  static_files: app/dist/index.html
+  upload: app/dist/index\.html
+- url: /(.*)
+  static_files: app/dist/\1
+  upload: app/dist/.*

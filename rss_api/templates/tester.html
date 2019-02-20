@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/5.14.1/jsoneditor.min.css'/>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/5.14.1/jsoneditor.min.js'></script>
+    <title>API Tester</title>
+</head>
+<body>
+    <h1>JSON API Tester</h1>
+    <div style="display: flex; width: 100%; justify-content: space-between;">
+        <div style="width: 100%; margin: 1em;">
+            <h2>Input</h2>
+            <form id="api_form">
+                <p>
+                    <div id="jsoneditor_input" style="height: 500px; width: 100%;"></div>
+                </p>
+                <p>
+                    <label for="url">URL</label>
+                    <input type="text" id="url">
+                </p>
+                <p>
+                    <label for="method">Method</label>
+                    <input type="text" id="method">
+                </p>
+        
+                <p>
+                    <input type="submit" value="Send request">
+                </p>
+            </form>
+        </div>
+        <div style="width: 100%; margin: 1em;">
+            <h2>Result</h2>
+
+            <div id="jsoneditor_result" style="height: 500px; width: 100%;"></div>
+            <p id="result_info"></p>
+        </div>
+    </div>
+    
+
+    
+
+    <script>
+        let url = document.getElementById("url");
+        let method = document.getElementById("method");
+        let editor_input = new JSONEditor(document.getElementById("jsoneditor_input"), {});
+
+        let resultInfo = document.getElementById("result_info");        
+        let editor_output = new JSONEditor(document.getElementById("jsoneditor_result"), {});
+
+        document.getElementById("api_form").addEventListener("submit", e => {
+            e.preventDefault();
+            
+            resultInfo.textContent = "";
+            editor_output.set(null);
+            
+            let jsonObj = editor_input.get();
+            let json = null;
+            if(!$.isEmptyObject(jsonObj))
+                json = JSON.stringify(jsonObj);
+            console.log(json);
+
+            $.ajax({
+                url: url.value,
+                method: method.value,
+                data: json,
+                contentType: "application/json",
+                success: (data, status, ajax) => {
+                    resultInfo.textContent = status;
+
+                    if(data)
+                        editor_output.set(data);
+                },
+                error: (ajax, string, err) => {
+                    resultInfo.textContent = string + "\n" + err;
+                    
+                    if(ajax.responseJSON)
+                        editor_output.set(ajax.responseJSON);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

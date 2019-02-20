@@ -1,0 +1,341 @@
+@tailwind preflight;
+
+@tailwind components;
+  
+@tailwind utilities;
+
+.error-message {
+    @apply flex flex-col items-center justify-center w-full h-full;
+}
+
+.error-message .error-header {
+    @apply text-2xl pb-2;
+}
+
+.spinner {
+    @apply text-grey;
+    font-size: 10em;
+}
+
+.grid {
+    @apply w-screen h-screen;
+    display: grid;
+
+    grid-template-rows: 50px 70px auto;
+    grid-template-columns: 100px auto;
+
+    grid-template-areas: 
+        "header header"
+        "sidebar sidebar"
+        "content content";
+}
+
+.content {
+    @apply bg-grey-lighter overflow-y-auto p-3;
+    grid-area: content;
+}
+
+.content hr {
+    @apply bg-grey-light;
+    height: 0.1rem;
+}
+
+.story {
+    @apply bg-white my-3 rounded-sm shadow p-2;
+}
+
+.story summary {
+    @apply flex flex-col cursor-pointer;
+}
+
+.story summary h2 {
+    @apply text-lg flex-grow;
+}
+
+.story-details {
+    @apply w-4/5;
+}
+
+.story-side {
+    @apply flex items-center mr-2;
+}
+
+.read-button {
+    @apply bg-transparent border-blue border text-blue font-bold no-underline py-2 px-3 rounded;
+}
+
+.read-button:hover {
+    @apply bg-blue border-blue text-white;
+}
+
+.fav-button {
+    @apply text-3xl text-yellow-dark;
+}
+
+.clicked {
+    @apply cursor-auto;
+}
+
+.read h2, .read .story-side {
+    @apply text-grey-dark;
+}
+
+.read .fav-button {
+    color: #ccc126da;
+}
+
+.header {
+    @apply bg-blue flex flex-row items-center text-lg flex-wrap;
+    grid-area: header;
+}
+
+.header * {
+    @apply mx-2 text-white no-underline;
+}
+
+.header .banner {
+    @apply text-2xl ml-2 mr-4 cursor-default;
+}
+
+.header a {
+    @apply my-auto;
+}
+
+.header a:hover {
+    @apply text-grey;
+}
+
+.header .nav-items {
+    @apply flex-grow;
+}
+
+.sidebar {
+    @apply bg-blue-lighter flex overflow-auto flex-row items-center;
+    grid-area: sidebar;
+}
+
+.sidebar-contents {
+    @apply list-reset overflow-auto w-full h-full;
+    display: flex;
+}
+
+.sidebar-contents li{
+    @apply self-center;
+}
+
+.sidebar-button {
+    @apply text-grey-darkest rounded-full bg-grey-lighter shadow-inner flex justify-center items-center no-underline my-0 mx-1;
+    height: 50px;
+    width: 50px;
+}
+
+.sidebar-button:hover {
+    @apply bg-grey-darker text-grey-lightest;
+}
+
+.dotted {
+    @apply bg-transparent shadow-none border-2 border-dashed border-black text-3xl;
+}
+
+.dotted:hover {
+    @apply border-grey-dark text-grey-dark bg-transparent;
+}
+
+.green {
+    @apply border-green-dark text-green-dark;
+}
+
+.green:hover {
+    @apply border-green-darker text-green-darker;
+}
+
+.red {
+    @apply border-red text-red;
+}
+
+.red:hover {
+    @apply border-red-darker text-red-darker;
+}
+
+.perma-block {
+    @apply list-reset flex flex-row;
+}
+
+.autocomplete {
+    @apply w-64;
+}
+
+.add-feed-form {
+    @apply mb-4 mt-2 w-32;
+}
+
+.add-feed-form input[type="text"] {
+    @apply border;
+}
+
+.add-feed-form>div {
+    @apply flex items-center justify-between flex-wrap mb-2;
+}
+
+.add-feed-form input[type="submit"] {
+    @apply border rounded px-2 py-1 border-blue-dark bg-transparent text-blue-dark cursor-pointer;
+}
+
+.add-feed-form .invalid {
+    @apply border-red bg-red-lightest;
+}
+
+.add-feed-form input[type="submit"]:not(:enabled) {
+    @apply border-grey bg-grey text-grey-dark cursor-not-allowed;
+}
+
+.add-feed-form input[type="submit"]:enabled:hover {
+    @apply bg-blue-dark text-white;
+}
+
+.feed-list {
+    @apply h-full bg-white my-2;
+}
+
+.feed-list>div {
+    @apply border p-2;
+}
+
+.feed-list>div:hover {
+    @apply bg-grey-light cursor-pointer;
+}
+
+.feed-list .feed-name {
+    @apply font-bold;
+}
+
+.feed-list .feed-link {
+    @apply text-grey-darker;
+}
+
+.feed-view-header {
+    @apply flex items-center;
+}
+
+.feed-view-header .feed-header {
+    @apply flex-grow;
+}
+
+.feed-view-header input[type="text"].feed-header {
+    @apply py-1 text-2xl font-bold mr-2;
+}
+
+.feed-view-header .save-name {
+    @apply border-green bg-green text-white;
+}
+
+.feed-view-header .save-name:hover {
+    @apply border-green-dark bg-green-dark;
+}
+
+.feed-view-header .cancel-name {
+    @apply border-orange bg-orange text-white;
+}
+
+.feed-view-header .cancel-name:hover {
+    @apply border-orange-dark bg-orange-dark;
+}
+
+.feed-view-header .change-name {
+    @apply border-blue bg-blue text-white;
+}
+
+.feed-view-header .change-name:hover {
+    @apply border-blue-dark bg-blue-dark;
+}
+
+.feed-view-header .delete-feed {
+    @apply border-red bg-red text-white ml-4 mr-0;
+}
+
+.feed-view-header .delete-feed:hover {
+    @apply border-red-dark bg-red-dark;
+}
+
+.btn-big {
+    @apply border px-3 py-2 mx-1 rounded no-underline text-black text-lg;
+}
+
+.options {
+    @apply flex flex-col;
+}
+
+.options>div {
+    @apply py-2;
+}
+
+.options label {
+    @apply pl-2;
+}
+
+.options p {
+    @apply pb-3;
+}
+
+.btn {
+    @apply border py-1 px-2 border-blue rounded text-blue;
+}
+
+.btn:hover {
+    @apply bg-blue-dark border-blue-dark text-white;
+}
+
+.btn:disabled, .btn:hover:disabled {
+    @apply bg-grey border-grey text-white cursor-not-allowed;
+}
+
+.sorted {
+    list-style: none;
+}
+
+details summary::-webkit-details-marker { 
+    display : none; 
+}
+
+@screen md {
+    .grid {
+        grid-template-areas: 
+        "header header"
+        "sidebar content"
+        "sidebar content";
+    }
+
+    .dotted {
+        @apply text-4xl;
+    }
+
+    .sidebar {
+        @apply justify-center flex-col;
+    }
+
+    .sidebar-contents {
+        @apply flex flex-col items-center;
+    }
+
+    .perma-block {
+        @apply block;
+    }
+
+    .sidebar-button {
+        @apply mx-0 my-1;
+        width: 70px;
+        height: 70px;
+    }
+
+    .add-feed-form {
+        width: 40rem;    
+    }
+
+    .story-side {
+        @apply float-left;
+    }
+
+    .story summary {
+        @apply flex-row items-baseline;
+    }
+}
